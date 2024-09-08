@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout</title>
+</head>
+<body>
+    
+    <header class="masthead">
+        <div class="container px-4 px-lg-5 h-100">
+            <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                <div class="col-lg-8 align-self-end">
+                    <h1 class="text-white font-weight-bold">HA CERRADO SESIÓN CORRECTAMENTE</h1>
+                    <hr class="divider" />
+                </div>
+            </div>    
+        </div>
+    </header>
+    
+    {% block content %}
+    
+    <div>
+        
+        <form action="{% url 'logout' %}" method="POST" class="form-group my-3 col-6">
+            {% csrf_token %}
+    
+            {% if messages %}
+            {% for message in messages %}
+    
+            <div class="alert
+            {% if message.tags == 'error' %} alert-danger
+            {% elif message.tags == 'success' %} alert-success
+            {% else %} alert-warning
+            {% endif %} alert-dismissible fade show"
+             role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+    
+            {% endfor %}
+            {% endif %}
+    
+
+        </form>
+    </div>
+    {% endblock content %}
+</html>

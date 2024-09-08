@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producto Lista</title>
+</head>
+<body>
+    {% extends "AppSanta/padre.html"%}
+    {% load static %}
+    {% block contenidoquecambia %}
+    <h1>Lista Producto</h1>
+    
+    {% for producto in producto %}
+       <li> Nombre:{{producto.nombre}}
+          <p>
+            <a href="{% url 'DetalleProducto' producto.pk % }">Ver</a>
+            <a href="{% url 'EditarProducto' producto.pk % }">Editar</a>
+            <a href="{% url 'BorrarProducto' producto.pk % }">Borrar</a>
+          </p>
+       </li>
+    {%endfor %}
+    {% endblock contenidoquecambia %}
+</body>
+</html>
